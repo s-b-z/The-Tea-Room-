@@ -1,0 +1,927 @@
+/* Make jump links scroll smoothly instead of snapping instantly */
+html {
+  scroll-behavior: smooth; /* Turn on smooth scrolling for anchor links */
+}
+
+/* Set default page behavior and base visual settings */
+body {
+  margin: 0; /* Remove the browser's default white border around the page */
+  color: #2f1d12; /* Set a warm dark text color */
+  font-family: Arial, sans-serif; /* Set the default body font */
+  background-color: #f6efe7; /* Create a soft page background color */
+}
+
+/* Make all images behave more predictably in layout */
+img {
+  max-width: 100%; /* Prevent images from overflowing their containers */
+  display: block; /* Remove extra inline spacing under images */
+}
+
+/* ======================================== */
+/* HOME PAGE STYLES                         */
+/* ======================================== */
+
+/* Style the shared hero sections on the home page */
+.hero {
+  position: relative; /* Allow child elements to position cleanly inside */
+  width: 100%; /* Make the section span the full page width */
+  overflow: hidden; /* Hide any image overflow outside the section */
+}
+
+/* Style the hero images on the home page */
+.hero img {
+  width: 100%; /* Make the images fill the width of the section */
+  height: 260px; /* Give the hero images a fixed visible height */
+  object-fit: cover; /* Crop the image nicely instead of stretching it */
+}
+
+/* Style the main middle block on the home page */
+#main {
+  background-color: #a3c5d6; /* Give the center section a blue-gray background */
+  text-align: center; /* Center the text and button */
+  padding: 60px 24px; /* Add large top and bottom spacing plus side spacing */
+  position: relative; /* Keep the section in normal layout while allowing layering if needed */
+  z-index: 2; /* Make sure the content stays above anything decorative */
+}
+
+/* Style the smaller home-page heading */
+.home-page h1 {
+  font-size: 22px; /* Set the text size */
+  font-style: italic; /* Make the heading italic */
+  color: #640101; /* Use a deep tea-red color */
+  margin: 0 0 8px 0; /* Remove top margin and add a small gap below */
+}
+
+/* Style the large decorative home-page title */
+.home-page h2 {
+  font-family: "Comforter Brush", cursive; /* Use your decorative brush font */
+  font-weight: 400; /* Use a supported font weight */
+  font-size: clamp(56px, 10vw, 92px); /* Make the title responsive across screen sizes */
+  color: #640101; /* Match the deep tea-red color */
+  margin: 0; /* Remove default heading margin */
+}
+
+/* Style the main Menu button on the home page */
+#menu-btn {
+  margin-top: 28px; /* Add space above the button */
+  font-family: Arial, sans-serif; /* Use a clean readable button font */
+  font-weight: bold; /* Make the button text more noticeable */
+  color: #ffffff; /* Make the button text white */
+  background-color: #000000; /* Make the button background black */
+  border: none; /* Remove the browser's default border */
+  padding: 14px 28px; /* Add inside spacing to enlarge the button */
+  font-size: 16px; /* Set the button text size */
+  cursor: pointer; /* Show a pointer cursor on hover */
+  border-radius: 8px; /* Round the corners slightly */
+  transition: transform 0.35s ease, background-color 0.35s ease; /* Smooth hover animation */
+}
+
+/* Add hover effects to the home-page menu button */
+#menu-btn:hover {
+  background-color: #083a3a; /* Change the button color on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* ======================================== */
+/* MENU PAGE BASE LAYOUT                    */
+/* ======================================== */
+
+/* Style the menu page body */
+.menu-page {
+  position: relative; /* Create a positioning context for background layers */
+  min-height: 100vh; /* Make sure the menu page fills at least the full screen height */
+  overflow-x: hidden; /* Prevent sideways scrolling */
+  background: linear-gradient(to bottom, #f6efe7 0%, #f2e6db 100%); /* Add a soft warm gradient background */
+}
+
+/* Create the wallpaper layer that sits behind the menu */
+.menu-wallpaper {
+  position: absolute; /* Place the wallpaper behind the content */
+  top: 0; /* Start it at the top of the page */
+  left: 0; /* Align it to the left edge */
+  width: 100%; /* Make it span the full page width */
+  z-index: 0; /* Place it behind all main content */
+  pointer-events: none; /* Prevent it from blocking clicks */
+}
+
+/* Style both gateway wallpaper images */
+.menu-wallpaper img {
+  width: 100%; /* Make each image fill the page width */
+  height: auto; /* Keep the image proportions correct */
+  object-fit: cover; /* Allow the image to crop if needed */
+}
+
+/* Style the reflected gateway image */
+.menu-wallpaper .reflection {
+  transform: scaleY(-1); /* Flip the image vertically */
+  transform-origin: top center; /* Make the flip happen from the top edge */
+  margin-top: -1px; /* Remove a possible tiny gap where the two images touch */
+  opacity: 0.92; /* Slightly soften the reflection */
+}
+
+/* Add a soft readability fade above the wallpaper */
+.menu-wallpaper-fade {
+  position: absolute; /* Float this fade over the wallpaper */
+  top: 0; /* Start at the top of the page */
+  left: 0; /* Align to the left edge */
+  width: 100%; /* Cover the full page width */
+  height: 900px; /* Cover the visible wallpaper area */
+  background: linear-gradient(to bottom, rgba(246, 239, 231, 0.18) 0%, rgba(246, 239, 231, 0.45) 45%, rgba(246, 239, 231, 0.9) 100%); /* Fade the busy art into the page background */
+  z-index: 1; /* Place it above the wallpaper images */
+  pointer-events: none; /* Prevent it from blocking clicks */
+}
+
+/* Style the centered fixed teapot art */
+.teapots {
+  position: fixed; /* Keep the teapot art still as the page scrolls */
+  top: 50%; /* Move it halfway down the viewport */
+  left: 50%; /* Move it halfway across the viewport */
+  transform: translate(-50%, -50%); /* Center it exactly using its own size */
+  width: min(78vw, 760px); /* Scale it for phones and larger screens */
+  z-index: 2; /* Put it above the wallpaper but behind the real content */
+  opacity: 0.16; /* Make it transparent */
+  filter: grayscale(100%) blur(2px); /* Make it black-and-white and slightly blurry */
+  pointer-events: none; /* Let users click through it */
+}
+
+/* Make the teapot image fill the teapot container */
+.teapots img {
+  width: 100%; /* Stretch the image to the width of its container */
+  height: auto; /* Keep the image ratio correct */
+}
+
+/* Style the main visible menu content wrapper */
+.menu-content {
+  position: relative; /* Keep the menu content above background layers */
+  z-index: 3; /* Ensure the content appears above decorative elements */
+  padding: 24px 16px 64px 16px; /* Add spacing around the content */
+}
+
+/* Style the main Menu heading */
+.menu-title {
+  font-family: "Comforter Brush", cursive; /* Use the decorative brush font */
+  font-weight: 400; /* Use a supported weight */
+  font-size: clamp(68px, 11vw, 108px); /* Make the title responsive */
+  color: #8a0a0a; /* Use a deep tea-red color */
+  text-align: center; /* Center the word Menu */
+  margin: 20px 0 30px 0; /* Add spacing above and below */
+  position: relative; /* Keep it in normal layout */
+}
+
+/* ======================================== */
+/* TOP SPLIT BANNER                         */
+/* ======================================== */
+
+/* Style the top Food / Tea banner */
+.menu-banner {
+  position: relative; /* Allow the banner halves and overlays to position inside */
+  width: min(92%, 1100px); /* Keep the banner centered and contained */
+  height: 220px; /* Set the banner height */
+  margin: 0 auto 28px auto; /* Center the banner and add space below */
+  border-radius: 18px; /* Round the corners */
+  overflow: hidden; /* Hide clipped edges and overflow */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18); /* Add depth under the banner */
+  z-index: 3; /* Keep it above decorative layers */
+}
+
+/* Style each half of the split banner */
+.banner-side {
+  position: absolute; /* Make each anchor fill the banner area */
+  inset: 0; /* Stretch each half to all sides of the banner */
+  display: block; /* Let the link fill its clickable area */
+  text-decoration: none; /* Remove default link styling */
+}
+
+/* Style the banner images */
+.banner-side img {
+  position: absolute; /* Make the image fill the banner area */
+  top: 0; /* Pin to the top */
+  left: 0; /* Pin to the left */
+  width: 100%; /* Fill the width */
+  height: 100%; /* Fill the height */
+  object-fit: cover; /* Crop cleanly instead of stretching */
+  transition: transform 0.35s ease, filter 0.35s ease; /* Smooth hover animation */
+}
+
+/* Clip the left banner side into an angled shape */
+.left {
+  clip-path: polygon(0 0, 62% 0, 42% 100%, 0 100%); /* Create the angled left shape */
+}
+
+/* Clip the right banner side into a matching angled shape */
+.right {
+  clip-path: polygon(58% 0, 100% 0, 100% 100%, 38% 100%); /* Create the angled right shape */
+}
+
+/* Style the overlay area that holds the banner text */
+.overlay {
+  position: absolute; /* Make the overlay fill the banner side */
+  inset: 0; /* Stretch it to all four edges */
+  display: flex; /* Use flexbox for text placement */
+  align-items: center; /* Center the text vertically */
+}
+
+/* Push the FOOD text toward the left side */
+.left .overlay {
+  justify-content: flex-start; /* Push text to the left */
+  padding-left: clamp(24px, 6vw, 84px); /* Add responsive left spacing */
+}
+
+/* Push the TEA text toward the right side */
+.right .overlay {
+  justify-content: flex-end; /* Push text to the right */
+  padding-right: clamp(24px, 6vw, 84px); /* Add responsive right spacing */
+}
+
+/* Style the banner text itself */
+.menu-banner h1 {
+  margin: 0; /* Remove default margin */
+  color: #ffffff; /* Make the text white */
+  font-size: clamp(2rem, 4vw, 3.4rem); /* Make the text responsive */
+  letter-spacing: 4px; /* Spread the letters out slightly */
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.35); /* Help the text stand out on the image */
+}
+
+/* Add hover effects to the split banner images */
+.banner-side:hover img {
+  filter: brightness(0.78); /* Darken the image on hover */
+  transform: scale(1.03); /* Slightly zoom the image on hover */
+}
+
+/* ======================================== */
+/* MENU SECTIONS                            */
+/* ======================================== */
+
+/* Style each major menu section block */
+.menu-section {
+  width: min(100%, 1100px); /* Keep the content centered and readable */
+  margin: 0 auto 40px auto; /* Center it and add spacing below */
+  position: relative; /* Keep it in the content layer */
+  z-index: 3; /* Make sure it stays above backgrounds */
+}
+
+/* Style all main section headings */
+.title {
+  font-family: "Comforter Brush", cursive; /* Use the brush font */
+  font-weight: 400; /* Use a supported weight */
+  font-size: clamp(54px, 8vw, 82px); /* Scale nicely across devices */
+  color: #8a0a0a; /* Use the same deep red accent */
+  text-align: center; /* Center all the section titles */
+  margin: 34px 0 12px 0; /* Add vertical spacing */
+}
+
+/* Style section helper notes like size info */
+.section-note {
+  text-align: center; /* Center helper note text */
+  margin: 0 0 16px 0; /* Add a gap below the note */
+  color: #5b3b2f; /* Use a softer warm brown */
+}
+
+/* Style the tea subsection wrappers */
+.tea-section {
+  margin-bottom: 34px; /* Add spacing under each subsection */
+}
+
+/* Style subsection headings inside tea groups */
+.tea-section h2 {
+  text-align: center; /* Center the subsection title */
+  font-size: clamp(32px, 6vw, 48px); /* Make the size responsive */
+  color: #8a0a0a; /* Match the accent color */
+  margin: 28px 0 8px 0; /* Add spacing above and below */
+  font-family: "Comforter Brush", cursive; /* Use the decorative font */
+  font-weight: 400; /* Use a supported weight */
+}
+
+/* Style subsection description text */
+.tea-section > p {
+  text-align: center; /* Center the descriptive text */
+  margin: 0 0 10px 0; /* Add space below it */
+  color: #5b3b2f; /* Use a warm muted brown */
+}
+
+/* Style labels like "Tea Leaves" and "Herbal Teas" */
+.flavor-label {
+  text-align: center; /* Center the label */
+  font-size: 1.1rem; /* Make it slightly larger than body text */
+  color: #5b3b2f; /* Use muted brown text */
+  margin: 16px 0 12px 0; /* Add spacing around it */
+}
+
+/* ======================================== */
+/* CARD LAYOUT                              */
+/* ======================================== */
+
+/* Use flexbox to keep rows centered */
+.card-container {
+  display: flex; /* Turn the card row into a flex container */
+  flex-wrap: wrap; /* Allow cards to wrap to the next row */
+  justify-content: center; /* Center all rows of cards */
+  gap: 16px; /* Add even spacing between the cards */
+}
+
+/* Style every menu card */
+.menu-card {
+  position: relative; /* Let the clipped triangle image sit inside the card */
+  flex: 1 1 calc(50% - 16px); /* Aim for two cards per row on common phone widths */
+  max-width: calc(50% - 8px); /* Keep two-up cards evenly sized */
+  min-width: 250px; /* Prevent cards from becoming too narrow */
+  min-height: 188px; /* Give enough room for image, title, description, and price */
+  padding: 18px; /* Add inside spacing */
+  border-radius: 16px; /* Soften the corners */
+  background-color: rgba(255, 255, 255, 0.93); /* Make the card nearly solid white */
+  border: 1px solid rgba(138, 10, 10, 0.12); /* Add a subtle border */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Add a soft shadow */
+  cursor: pointer; /* Show the pointer cursor to indicate clickability */
+  overflow: hidden; /* Hide triangle overflow outside rounded corners */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover animation */
+}
+
+/* Add a hover effect to every card */
+.menu-card:hover {
+  transform: translateY(-5px); /* Lift the card up slightly */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); /* Make the shadow stronger on hover */
+}
+
+/* Style the card's clipped triangle image */
+.menu-card img {
+  position: absolute; /* Anchor the image to a specific corner */
+  width: 46%; /* Make the triangle image large enough to be visible */
+  height: 68%; /* Give the triangle good vertical presence */
+  object-fit: cover; /* Crop the image to fit its box */
+}
+
+/* Food cards get their triangle on the top-right */
+.food-grid .menu-card img {
+  top: 0; /* Attach image to the top edge */
+  right: 0; /* Attach image to the right edge */
+  clip-path: polygon(100% 0, 0 0, 100% 100%); /* Create a top-right triangle */
+}
+
+/* Reserve text space away from the food triangle */
+.food-grid .menu-card h3,
+.food-grid .menu-card p,
+.food-grid .menu-card .price {
+  padding-right: 44%; /* Push text away from the image on the right */
+  text-align: left; /* Keep text easy to read */
+}
+
+/* Drink cards get their triangle on the bottom-left */
+.drink-grid .menu-card img {
+  bottom: 0; /* Attach image to the bottom edge */
+  left: 0; /* Attach image to the left edge */
+  clip-path: polygon(0 100%, 100% 100%, 0 0); /* Create a bottom-left triangle */
+}
+
+/* Reserve text space away from the drink triangle */
+.drink-grid .menu-card h3,
+.drink-grid .menu-card p,
+.drink-grid .menu-card .price {
+  padding-left: 44%; /* Push text away from the image on the left */
+  text-align: left; /* Keep text readable */
+}
+
+/* Style the card title */
+.menu-card h3 {
+  margin: 0 0 10px 0; /* Remove default top margin and add spacing below */
+  font-size: 1.18rem; /* Set a readable title size */
+  color: #421d14; /* Use a warm dark tone */
+}
+
+/* Style the card description */
+.menu-card p {
+  margin: 0 0 14px 0; /* Add some space below the description */
+  font-size: 0.96rem; /* Make text readable on phones */
+  line-height: 1.45; /* Improve readability with line spacing */
+  color: #4d392f; /* Use a softer dark tone */
+}
+
+/* Style the price line on each card */
+.price {
+  font-weight: bold; /* Make the price stand out */
+  color: #8a0a0a; /* Use the deep red accent color */
+  font-size: 1rem; /* Set the price text size */
+}
+
+/* ======================================== */
+/* ORDER POPUP                              */
+/* ======================================== */
+
+/* Style the full-screen opening popup */
+.popup {
+  position: fixed; /* Keep it fixed over the whole screen */
+  top: 0; /* Start at the top */
+  left: 0; /* Start at the left */
+  width: 100%; /* Cover the full width */
+  height: 100%; /* Cover the full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Dim the content behind it */
+  display: flex; /* Use flexbox to center the popup box */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 1000; /* Place it above the rest of the page */
+}
+
+/* Style the popup box */
+.popup-content {
+  background: #8a0a0a; /* Use the accent color */
+  color: #ffffff; /* Make the text white */
+  padding: 48px 40px; /* Add inside spacing */
+  border-radius: 24px; /* Round the corners */
+  text-align: center; /* Center text and buttons */
+  width: min(88vw, 420px); /* Keep it phone friendly */
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28); /* Add depth */
+}
+
+/* Style the popup heading */
+.popup-content h2 {
+  margin-top: 0; /* Remove the top margin */
+  margin-bottom: 20px; /* Add space below the heading */
+  font-size: 1.5rem; /* Set the heading size */
+}
+
+/* Style the popup buttons */
+.popup-content button {
+  display: inline-block; /* Allow buttons to sit neatly */
+  margin: 6px; /* Add spacing around each button */
+  padding: 12px 16px; /* Add inside spacing */
+  background-color: #ffffff; /* Give them a white background */
+  color: #8a0a0a; /* Match the accent color for text */
+  border: none; /* Remove borders */
+  border-radius: 10px; /* Round the corners */
+  cursor: pointer; /* Show the pointer cursor */
+  font-weight: bold; /* Make text stand out */
+}
+
+/* ======================================== */
+/* ITEM MODAL                               */
+/* ======================================== */
+
+/* Style the full-screen modal overlay */
+.item-modal {
+  position: fixed; /* Keep it fixed over the screen */
+  top: 0; /* Start at the top */
+  left: 0; /* Start at the left */
+  width: 100%; /* Cover the full width */
+  height: 100%; /* Cover the full height */
+  background-color: rgba(0, 0, 0, 0.62); /* Darken the page behind it */
+  display: none; /* Keep it hidden until JavaScript opens it */
+  justify-content: center; /* Center the modal box horizontally */
+  align-items: center; /* Center the modal box vertically */
+  z-index: 1001; /* Place it above most other elements */
+}
+
+/* Show the modal when JavaScript adds the show class */
+.item-modal.show {
+  display: flex; /* Turn the modal on */
+}
+
+/* Style the white modal box */
+.item-modal-content {
+  position: relative; /* Let the close button position inside it */
+  width: min(92vw, 620px); /* Keep it responsive */
+  background: #ffffff; /* Use a clean white background */
+  border-radius: 18px; /* Round the corners */
+  padding: 22px; /* Add inside spacing */
+  text-align: center; /* Center the content */
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.28); /* Add depth */
+}
+
+/* Style the image shown inside the modal */
+.item-modal-content img {
+  width: 100%; /* Fill the modal width */
+  max-height: 320px; /* Prevent the image from getting too tall */
+  object-fit: cover; /* Crop the image nicely */
+  border-radius: 12px; /* Round the image corners */
+  margin-bottom: 18px; /* Add space below the image */
+}
+
+/* Style the modal item title */
+.item-modal-content h3 {
+  margin: 0 0 10px 0; /* Remove top margin and add space below */
+  font-size: 1.75rem; /* Make the item title prominent */
+}
+
+/* Style the modal description text */
+.item-modal-content p {
+  margin: 0 0 12px 0; /* Add space below the description */
+  font-size: 1rem; /* Set a readable font size */
+  line-height: 1.6; /* Improve readability */
+}
+
+/* Style the price line inside the modal */
+#modal-price {
+  font-size: 1.1rem; /* Make the price a little more obvious */
+  font-weight: bold; /* Make the price stand out */
+  color: #8a0a0a; /* Use the accent color */
+  margin: 0 0 18px 0; /* Add some space below it */
+}
+
+/* Style the close button inside the modal */
+.close-item-modal {
+  position: absolute; /* Place it inside the modal box */
+  top: 10px; /* Move it near the top edge */
+  right: 14px; /* Move it near the right edge */
+  background: none; /* Remove the background */
+  border: none; /* Remove the border */
+  font-size: 30px; /* Make the X easy to tap */
+  cursor: pointer; /* Show pointer cursor */
+  color: #421d14; /* Use a dark warm color */
+}
+
+/* Style the little quantity control row */
+.quantity-row {
+  display: flex; /* Lay the controls out in a row */
+  justify-content: center; /* Center the controls */
+  align-items: center; /* Center them vertically */
+  gap: 12px; /* Add spacing between the controls */
+  margin-bottom: 18px; /* Add space below the quantity row */
+}
+
+/* Style the quantity buttons */
+.qty-btn {
+  width: 42px; /* Give the button a square-like width */
+  height: 42px; /* Give the button a square-like height */
+  border: none; /* Remove default border */
+  border-radius: 10px; /* Round the corners */
+  background-color: #e7d5c8; /* Give it a soft background */
+  color: #421d14; /* Use a dark warm text color */
+  font-size: 1.2rem; /* Make the plus/minus visible */
+  cursor: pointer; /* Show pointer cursor */
+  font-weight: bold; /* Make the symbol stronger */
+}
+
+/* Style the quantity number shown between buttons */
+#modal-quantity {
+  min-width: 36px; /* Keep the number from shifting too much */
+  text-align: center; /* Center the quantity number */
+  font-size: 1.1rem; /* Make the number readable */
+  font-weight: bold; /* Make the number stand out */
+}
+
+/* Style the Add to Cart button */
+#add-to-cart-btn {
+  background-color: #8a0a0a; /* Use the accent color */
+  color: #ffffff; /* Make the text white */
+  border: none; /* Remove default border */
+  padding: 12px 20px; /* Add inside spacing */
+  border-radius: 10px; /* Round the corners */
+  cursor: pointer; /* Show pointer cursor */
+  font-size: 16px; /* Set the button text size */
+  font-weight: bold; /* Make the button label stand out */
+}
+
+/* Add a hover state to Add to Cart */
+#add-to-cart-btn:hover {
+  background-color: #5f0606; /* Darken slightly on hover */
+}
+
+/* ======================================== */
+/* CART DRAWER                              */
+/* ======================================== */
+
+/* Style the drawer that slides in from the right */
+.cart-drawer {
+  position: fixed; /* Keep it fixed on the side */
+  top: 0; /* Start at the top */
+  right: -340px; /* Hide it off the screen by default */
+  width: 310px; /* Set the drawer width */
+  height: 100%; /* Fill the full screen height */
+  background: #ffffff; /* Use a white background */
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2); /* Add a left shadow */
+  padding: 20px; /* Add inside spacing */
+  transition: right 0.3s ease; /* Animate sliding in and out */
+  z-index: 1002; /* Keep it above main content */
+  overflow-y: auto; /* Let it scroll if the cart gets long */
+}
+
+/* Slide the drawer into view when open */
+.cart-drawer.open {
+  right: 0; /* Move it into the visible area */
+}
+
+/* Style the cart heading */
+.cart-drawer h2 {
+  margin-top: 0; /* Remove top spacing */
+  text-align: center; /* Center the heading */
+  color: #8a0a0a; /* Use the accent color */
+}
+
+/* Remove default list styling from the cart list */
+#cart-items {
+  list-style: none; /* Remove bullet points */
+  padding: 0; /* Remove left padding */
+  margin: 0 0 18px 0; /* Remove default margins and add bottom spacing */
+}
+
+/* Style each item row inside the cart */
+.cart-item {
+  border-bottom: 1px solid #ead8c9; /* Add a divider under each row */
+  padding: 10px 0; /* Add vertical spacing */
+}
+
+/* Style the cart item name */
+.cart-item-name {
+  font-weight: bold; /* Make the item name stand out */
+  color: #421d14; /* Use a warm dark color */
+  margin-bottom: 4px; /* Add a small gap below */
+}
+
+/* Style the smaller detail line in cart items */
+.cart-item-details {
+  font-size: 0.92rem; /* Use a slightly smaller font */
+  color: #5b3b2f; /* Use a muted brown color */
+  margin-bottom: 8px; /* Add a gap below */
+}
+
+/* Style the remove button */
+.remove-btn {
+  background-color: #e7d5c8; /* Give the button a soft warm background */
+  color: #421d14; /* Use a dark warm text color */
+  border: none; /* Remove default border */
+  padding: 8px 10px; /* Add inside spacing */
+  border-radius: 8px; /* Round the corners */
+  cursor: pointer; /* Show pointer cursor */
+  font-size: 0.9rem; /* Set the text size */
+}
+
+/* Style the cart summary area */
+.cart-summary {
+  border-top: 2px solid #ead8c9; /* Separate the total from the items above it */
+  padding-top: 14px; /* Add spacing above the summary */
+}
+
+/* Style the total row */
+.total-line {
+  display: flex; /* Put the label and amount on one row */
+  justify-content: space-between; /* Push them to opposite sides */
+  align-items: center; /* Center vertically */
+  font-weight: bold; /* Make the total stand out */
+  color: #421d14; /* Use a warm dark color */
+  margin-bottom: 14px; /* Add space below */
+}
+
+/* Style the checkout button */
+#checkout-btn {
+  width: 100%; /* Make the button span the drawer width */
+  background: #8a0a0a; /* Use the accent color */
+  color: #ffffff; /* Make the button text white */
+  border: none; /* Remove default border */
+  padding: 12px 16px; /* Add inside spacing */
+  border-radius: 10px; /* Round the corners */
+  cursor: pointer; /* Show pointer cursor */
+  font-weight: bold; /* Make the label stand out */
+}
+
+/* Add hover effect to the checkout button */
+#checkout-btn:hover {
+  background: #5f0606; /* Darken on hover */
+}
+
+/* Style the floating cart toggle button */
+#cart-toggle {
+  position: fixed; /* Keep the button fixed on screen */
+  top: 18px; /* Place it near the top */
+  right: 18px; /* Place it near the right edge */
+  background: #8a0a0a; /* Use the accent color */
+  color: #ffffff; /* Make the icon white */
+  border: none; /* Remove default border */
+  padding: 12px 16px; /* Add inside spacing */
+  border-radius: 999px; /* Make it pill-shaped */
+  cursor: pointer; /* Show pointer cursor */
+  z-index: 1003; /* Keep it above other interface elements */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18); /* Add a shadow */
+  display: flex; /* Use flexbox inside the button */
+  align-items: center; /* Center the content vertically */
+  gap: 8px; /* Add spacing between icon and count */
+}
+
+/* Darken the cart button on hover */
+#cart-toggle:hover {
+  background: #5f0606; /* Darken the button color */
+}
+
+/* Style the small count badge on the cart button */
+#cart-count {
+  background: #ffffff; /* Make the badge white */
+  color: #8a0a0a; /* Make the text the accent color */
+  min-width: 22px; /* Keep the badge wide enough for numbers */
+  height: 22px; /* Set badge height */
+  border-radius: 999px; /* Make it circular/pill-shaped */
+  display: inline-flex; /* Let the badge center its number */
+  align-items: center; /* Center number vertically */
+  justify-content: center; /* Center number horizontally */
+  font-size: 0.85rem; /* Set badge text size */
+  font-weight: bold; /* Make badge number stand out */
+  padding: 0 6px; /* Add a little extra inside spacing */
+}
+
+/* ======================================== */
+/* RESPONSIVE ADJUSTMENTS                   */
+/* ======================================== */
+
+/* Improve layout on medium and larger screens */
+@media (min-width: 900px) {
+  .menu-card {
+    flex: 0 1 calc(33.333% - 16px); /* Use three cards per row on larger screens */
+    max-width: calc(33.333% - 11px); /* Keep three cards evenly sized */
+  }
+}
+
+/* Improve layout on narrow phones */
+@media (max-width: 640px) {
+  .menu-card {
+    flex: 1 1 100%; /* Stack cards into one column on narrower screens */
+    max-width: 100%; /* Let each card take the available width */
+    min-width: 0; /* Allow the card to shrink naturally */
+  }
+
+  .food-grid .menu-card h3,
+  .food-grid .menu-card p,
+  .food-grid .menu-card .price {
+    padding-right: 40%; /* Slightly reduce reserved image space on food cards */
+  }
+
+  .drink-grid .menu-card h3,
+  .drink-grid .menu-card p,
+  .drink-grid .menu-card .price {
+    padding-left: 40%; /* Slightly reduce reserved image space on drink cards */
+  }
+
+  .menu-banner {
+    height: 180px; /* Shorten the split banner on smaller screens */
+  }
+
+  .hero img {
+    height: 220px; /* Make the home-page hero images shorter on phones */
+  }
+
+  #main {
+    padding: 120px 20px; /* Tighten the home-page center spacing on phones */
+  }
+
+  .cart-drawer {
+    width: min(86vw, 310px); /* Make the cart drawer fit small screens more comfortably */
+  }
+}
+
+.popup-content input,
+.popup-content textarea {
+  width: 90%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.popup-content textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+
+.option-card {
+  cursor: default;
+}
+
+.option-card:hover {
+  transform: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+#tea-builder-modal select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#tea-builder-add-btn {
+  background: #8a0a0a;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+}
+
+#tea-builder-add-btn:hover {
+  background: #5f0606;
+}
+
+.receipt-box {
+  max-width: 520px;
+  text-align: left;
+}
+
+#receipt-details {
+  margin-top: 12px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #421d14;
+}
+
+#receipt-details h3 {
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-size: 1.2rem;
+  color: #8a0a0a;
+}
+
+#receipt-ok-btn {
+  margin-top: 22px;
+  width: 100%;
+  background: #8a0a0a;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#receipt-ok-btn:hover {
+  background: #5f0606;
+}
+
+
+/* Tea builder modal fixes */
+.tea-builder-box {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tea-scroll-area {
+  overflow-y: auto;
+  padding-right: 6px;
+  max-height: 70vh;
+}
+
+#tea-builder-add-btn {
+  margin-top: 12px;
+  flex-shrink: 0;
+}
+
+.item-modal.show {
+  display: flex;
+}
+
+/* Allow clicking outside modal to close */
+#tea-builder-modal {
+  cursor: pointer;
+}
+
+#tea-builder-modal .item-modal-content {
+  cursor: auto;
+}
+
+.side-select,
+.salad-select {
+  text-align: left;
+  margin-top: 12px;
+}
+
+.side-select label,
+.salad-select label {
+  font-weight: bold;
+  color: #421d14;
+}
+
+#modal-side,
+#modal-salad {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Fix food modal height */
+#item-modal .item-modal-content {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.food-scroll-area {
+  overflow-y: auto;
+  max-height: 70vh;
+  padding-right: 6px;
+}
+
+#add-to-cart-btn {
+  flex-shrink: 0;
+  margin-top: 12px;
+}
+
+#delivery-form {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+#pickup-now-btn.selected,
+#pickup-later-btn.selected {
+  background-color: #5f0606;
+  color: white;
+}
+

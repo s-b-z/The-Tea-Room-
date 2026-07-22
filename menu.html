@@ -1,0 +1,882 @@
+<!DOCTYPE html> <!-- Tell the browser this is an HTML5 document -->
+<html lang="en"> <!-- Start the HTML document and set the language to English -->
+<head> <!-- Start the head section -->
+  <meta charset="UTF-8"> <!-- Allow standard text characters to display properly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Make the page mobile responsive -->
+  <title>The Tea Room Menu</title> <!-- Set the browser tab title -->
+
+  <link rel="stylesheet" href="styles.css"> <!-- Connect the CSS stylesheet -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Speed up Google Fonts loading -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Speed up the second font connection -->
+  <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Fascinate+Inline&display=swap" rel="stylesheet"> <!-- Load the custom fonts -->
+</head> <!-- End the head section -->
+
+<body class="menu-page"> <!-- Start the page body and apply the menu-page class -->
+
+  <div class="menu-wallpaper"> <!-- Start the gateway wallpaper container -->
+    <img src="assets/pre-gateway1.png" alt="Japanese gateway background"> <!-- Show the main gateway image -->
+    <img src="assets/pre-gateway1.png" alt="Japanese gateway reflection" class="reflection"> <!-- Show the vertically flipped reflection -->
+  </div> <!-- End the wallpaper container -->
+
+  <div class="menu-wallpaper-fade"></div> <!-- Add a soft fade layer over the wallpaper -->
+
+  <div class="teapots"> <!-- Start the fixed teapot background layer -->
+    <img src="assets/teapot.png" alt="Floating teapot background"> <!-- Show the teapot background image -->
+  </div> <!-- End the teapot background layer -->
+
+  <button id="cart-toggle" type="button">🛒 <span id="cart-count">0</span></button> <!-- Create the floating cart button with a live count badge -->
+
+  <div id="cart-drawer" class="cart-drawer"> <!-- Start the slide-out cart drawer -->
+    <h2>Your Cart</h2> <!-- Show the cart heading -->
+    <ul id="cart-items"></ul> <!-- Empty list that JavaScript fills with cart items -->
+    <div class="cart-summary"> <!-- Start the cart summary area -->
+      <div class="total-line"> <!-- Start the total row -->
+        <span>Total</span> <!-- Show the "Total" label -->
+        <span id="cart-total">$0.00</span> <!-- Show the running total price -->
+      </div> <!-- End the total row -->
+      <button id="checkout-btn" type="button">Checkout</button> <!-- Create the checkout button -->
+    </div> <!-- End the cart summary area -->
+  </div> <!-- End the cart drawer -->
+
+  <main class="menu-content"> <!-- Start the main menu content -->
+
+    <section class="menu-banner"> <!-- Start the split banner -->
+      <a href="#food" class="banner-side left"> <!-- Create the left banner link to the food section -->
+        <img src="assets/lantern-upside.jpg" alt="Lantern banner for food"> <!-- Show the image for the food banner -->
+        <div class="overlay"> <!-- Start the overlay text container -->
+          <h1>FOOD</h1> <!-- Show the FOOD label -->
+        </div> <!-- End the overlay text container -->
+      </a> <!-- End the left banner link -->
+
+      <a href="#tea" class="banner-side right"> <!-- Create the right banner link to the tea section -->
+        <img src="assets/lantern-upside-down.jpg" alt="Lantern banner for tea"> <!-- Show the image for the tea banner -->
+        <div class="overlay"> <!-- Start the overlay text container -->
+          <h1>TEA</h1> <!-- Show the TEA label -->
+        </div> <!-- End the overlay text container -->
+      </a> <!-- End the right banner link -->
+    </section> <!-- End the split banner -->
+
+    <h1 class="menu-title">Menu</h1> <!-- Show the main menu title -->
+
+    <section class="menu-section" id="food"> <!-- Start the food section -->
+      <h2 class="title">Tea Infused Meals</h2> <!-- Show the food section title -->
+
+      <div class="card-container food-grid"> <!-- Start the centered row of food cards -->
+
+        <div class="menu-card" data-price="15.99"> <!-- Start the first food card and store its price -->
+          <img src="assets/pre-sweet-tea-chicken.jpg" alt="Sweet Tea BBQ Chicken"> <!-- Show the item image -->
+          <h3>Sweet Tea BBQ Chicken</h3> <!-- Show the item title -->
+          <p>Crispy flame-grilled chicken with our famous sweet tea barbecue sauce. Typically served with rosemary parmesan home fries and your choice of side salad.</p> <!-- Show the item description -->
+          <div class="price">$15.99</div> <!-- Show the visible price -->
+        </div> <!-- End the first food card -->
+
+        <div class="menu-card" data-price="11.99"> <!-- Start the second food card -->
+          <img src="assets/pre-corn-chowder.jpg" alt="Chamomile Corn Chowder"> <!-- Show the item image -->
+          <h3>Chamomile Corn Chowder</h3> <!-- Show the item title -->
+          <p>A creamy soup infused with fresh chamomile tea. Typically served with cornbread and your choice of side salad.</p> <!-- Show the item description -->
+          <div class="price">$11.99</div> <!-- Show the visible price -->
+        </div> <!-- End the second food card -->
+
+        <div class="menu-card" data-price="18.99"> <!-- Start the third food card -->
+          <img src="assets/pre-ribs.jpg" alt="Jasmine Tea Rub Ribs"> <!-- Show the item image -->
+          <h3>Jasmine Tea Rub Ribs</h3> <!-- Show the item title -->
+          <p>Slow-cooked ribs seasoned with jasmine tea and aromatic spices. Served with sweet tea glaze, creamy garlic mashed potatoes, and your choice of side salad.</p> <!-- Show the item description -->
+          <div class="price">$18.99</div> <!-- Show the visible price -->
+        </div> <!-- End the third food card -->
+
+        <div class="menu-card" data-price="13.49"> <!-- Start the fourth food card -->
+          <img src="assets/pre-hotcakes.jpg" alt="Matcha Hot Cakes"> <!-- Show the item image -->
+          <h3>Matcha Hot Cakes</h3> <!-- Show the item title -->
+          <p>Hot cakes infused with matcha, rolled oats, and spinach. Topped with yogurt and blueberries or almond butter and pecans.</p> <!-- Show the item description -->
+          <div class="price">$13.49</div> <!-- Show the visible price -->
+        </div> <!-- End the fourth food card -->
+
+        <div class="menu-card" data-price="16.99"> <!-- Start the fifth food card -->
+          <img src="assets/pre-porkchop.jpg" alt="Sweet Tea-Brined Pork Chops"> <!-- Show the item image -->
+          <h3>Sweet Tea-Brined Pork Chops</h3> <!-- Show the item title -->
+          <p>Juicy pork chops brined in our signature sweet tea blend and grilled to perfection. Served with creamy garlic mashed potatoes and your choice of side salad.</p> <!-- Show the item description -->
+          <div class="price">$16.99</div> <!-- Show the visible price -->
+        </div> <!-- End the fifth food card -->
+
+        <div class="menu-card" data-price="14.99"> <!-- Start the sixth food card -->
+          <img src="assets/pre-chickenbowl.jpg" alt="Honey Barley Chicken Bowl"> <!-- Show the item image -->
+          <h3>Honey Barley Chicken Bowl</h3> <!-- Show the item title -->
+          <p>Honey barley glazed chicken sautéed with green beans and yellow bell peppers over coconut jasmine rice with a side of chili oil.</p> <!-- Show the item description -->
+          <div class="price">$14.99</div> <!-- Show the visible price -->
+        </div> <!-- End the sixth food card -->
+
+      </div> <!-- End the meals card row -->
+    </section> <!-- End the food section -->
+
+    <section class="menu-section"> <!-- Start the sides section -->
+      <h2 class="title">Sides</h2> <!-- Show the section title -->
+
+      <div class="card-container food-grid"> <!-- Start the row of sides cards -->
+
+        <div class="menu-card side-item" data-price="4.99"> <!-- Start a side card -->
+          <img src="assets/pre-homefries.jpg" alt="Rosemary Parm Home Fries"> <!-- Show the side image -->
+          <h3>Rosemary Parm Home Fries</h3> <!-- Show the side title -->
+          <p>Crispy home fries seasoned with rosemary and parmesan cheese.</p> <!-- Show the side description -->
+          <div class="price">$4.99</div> <!-- Show the visible price -->
+        </div> <!-- End the side card -->
+
+        <div class="menu-card side-item" data-price="4.49"> <!-- Start a side card -->
+          <img src="assets/pre-coleslaw.jpg" alt="Thick Cut Coleslaw"> <!-- Show the side image -->
+          <h3>Thick Cut Coleslaw</h3> <!-- Show the side title -->
+          <p>A creamy and tangy coleslaw made with thick-cut cabbage and a zesty dressing.</p> <!-- Show the side description -->
+          <div class="price">$4.49</div> <!-- Show the visible price -->
+        </div> <!-- End the side card -->
+
+        <div class="menu-card side-item" data-price="4.49"> <!-- Start a side card -->
+          <img src="assets/pre-potatoes.jpg" alt="Creamy Mash Potatoes"> <!-- Show the side image -->
+          <h3>Garlic Mashed Potatoes</h3> <!-- Show the side title -->
+          <p>Creamy garlic mashed potatoes.</p> <!-- Show the side description -->
+          <div class="price">$4.49</div> <!-- Show the visible price -->
+        </div> <!-- End the side card -->
+
+        <div class="menu-card side-item" data-price="1.50"> <!-- Start a side card -->
+          <img src="assets/pre-cornbread.jpg" alt="Corbread"> <!-- Show the side image -->
+          <h3>Corn Bread Slice</h3> <!-- Show the side title -->
+          <p>A slice of our creamy sweet cornbread.</p> <!-- Show the side description -->
+          <div class="price">$1.50</div> <!-- Show the visible price -->
+        </div> <!-- End the side card -->
+
+        <div class="menu-card side-item" data-price="4.99"> <!-- Start a side card -->
+          <img src="assets/pre-housesalad.jpg" alt="House Salad"> <!-- Show the side image -->
+          <h3>House Side Salad</h3> <!-- Show the side title -->
+          <p>Mixed greens with shredded carrot, cucumber, grape tomatoes and a hard boiled egg. Served with our ranch.</p> <!-- Show the side description -->
+          <div class="price">$4.99</div> <!-- Show the visible price -->
+        </div> <!-- End the side card -->
+
+        <div class="menu-card side-item" data-price="4.99"> <!-- Start a side card -->
+          <img src="assets/pre-ceasarsalad.jpg" alt="Ceasar Salad"> <!-- Show the side image -->
+          <h3>Grilled Ceasar Side Salad</h3> <!-- Show the side title -->
+          <p>Grilled lettuce, shredded parmesan, pesto drizzle, tossed in ceasar dressing</p> <!-- Show the side description -->
+          <div class="price">$4.99</div> <!-- Show the visible price -->
+        </div> <!-- End the side card -->
+
+        <div class="menu-card side-item" data-price="4.99"> <!-- Start a side card -->
+          <img src="assets/pre-thaisalad.jpg" alt="Thai Salad"> <!-- Show the side image -->
+          <h3>Thai Side Salad</h3> <!-- Show the side title -->
+          <p>Mixed greens, shredded carrots, shredded cucumber, sweet pepppers. Served with a spicy tree nut sauce</p> <!-- Show the side description -->
+          <div class="price">$4.99</div> <!-- Show the visible price -->
+        </div> <!-- End the side card -->
+
+      </div> <!-- End the sides row -->
+    </section> <!-- End the sides section -->
+
+    <section class="menu-section" id="tea"> <!-- Start the drinks section -->
+      <h2 class="title">Tea Blends</h2> <!-- Show the tea title -->
+      <p class="section-note">Sizes: Small (8 oz), Medium (16 oz), Large (32 oz)</p> <!-- Show tea size information -->
+
+      <div class="tea-section"> <!-- Start the milk teas section -->
+        <h2>Choose Your Type</h2> <!-- Show the subsection title -->
+        <div class="card-container drink-grid">
+
+ <div class="menu-card" data-price="4.99"> <!-- Start the first drink card -->
+            <img src="assets/pre-tea.jpg" alt="Black Tea"> <!-- Show the drink image -->
+            <h3>Tea</h3> <!-- Show the drink title -->
+            <p>Tea</p> <!-- Show the drink description -->
+            <div class="price">$4.99</div> <!-- Show the visible price -->
+          </div> <!-- End the first drink card -->
+
+           <div class="menu-card" data-price="4.99"> <!-- Start the first drink card -->
+            <img src="assets/pre-tea.jpg" alt="Black Tea"> <!-- Show the drink image -->
+            <h3>Milk Tea</h3> <!-- Show the drink title -->
+            <p>Tea + Milk</p> <!-- Show the drink description -->
+            <div class="price">$4.99</div> <!-- Show the visible price -->
+          </div> <!-- End the first drink card -->
+
+           <div class="menu-card" data-price="4.99"> <!-- Start the first drink card -->
+            <img src="assets/pre-tea.jpg" alt="Black Tea"> <!-- Show the drink image -->
+            <h3>Latte</h3> <!-- Show the drink title -->
+            <p>Concentrated Tea + Frothed Milk</p> <!-- Show the drink description -->
+            <div class="price">$4.99</div> <!-- Show the visible price -->
+          </div>
+        </div>
+
+          <h2>Choose Your Base</h2>
+
+        <h3 class="flavor-label">Tea Leaves</h3> <!-- Show the category label -->
+        <div class="card-container drink-grid"> <!-- Start the centered row of drink cards -->
+
+          <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-blacktea.jpg" alt="Black Tea"> <!-- Show the drink image -->
+            <h3>Black Tea</h3> <!-- Show the drink title -->
+            <p>Fully oxidized tea leaves with a robust flavor. Approximately 40–70 mg of caffeine per 8 oz.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+          <div class="menu-card option-card drink-view-only"> <!-- Start the second drink card -->
+            <img src="assets/pre-greentea.jpg" alt="Green Tea"> <!-- Show the drink image -->
+            <h3>Green Tea</h3> <!-- Show the drink title -->
+            <p>Unoxidized tea leaves with a light, grassy flavor. Approximately 25–50 mg of caffeine per 8 oz.</p> <!-- Show the drink description -->
+          
+          </div> 
+
+          <div class="menu-card option-card drink-view-only"> <!-- Start the third drink card -->
+            <img src="assets/pre-jasmine.jpg" alt="Jasmine Tea"> <!-- Show the drink image -->
+            <h3>Jasmine Tea</h3> <!-- Show the drink title -->
+            <p>Floral and aromatic tea with a smooth, delicate flavor. Approximately 30–60 mg of caffeine per 8 oz.</p> <!-- Show the drink description -->
+            
+          </div> 
+        </div>
+  
+<h3 class="flavor-label">Herbals</h3> <!-- Show the category label -->
+       <div class="card-container drink-grid"> <!-- Start the centered row of drink cards -->
+
+          <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-mullein.jpg" alt="Mullein Tea"> <!-- Show the drink image -->
+            <h3>Mullein</h3> <!-- Show the drink title -->
+            <p>Soothing herbal infusion made from the leaves and flowers of the verbascum Thapus plant. Naturally supports respiratory health, loosen mucus and soothe sore throats. 0mg of caffeine per 8oz. </p> <!-- Show the drink description -->
+            
+          </div> 
+
+          <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-rose.jpg" alt="Rose Tea"> <!-- Show the drink image -->
+            <h3>Rose</h3> <!-- Show the drink title -->
+            <p>Floral and aromaticc infusion made from whole dried rose buds. 0 mg of caffeine per 8 oz.</p> <!-- Show the drink description -->
+            
+          </div>
+
+          <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-mint.jpg" alt="Mint Tea"> <!-- Show the drink image -->
+            <h3>Mint</h3> <!-- Show the drink title -->
+            <p>Refreshing and aromatic, made with fresh mint leaves. Known for its cooling sensation, flavor and soothing digestion effects. 0 mg of caffeine per 8 oz.</p> <!-- Show the drink description -->
+          
+          </div> 
+
+          <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-barley.jpg" alt="Barley Tea"> <!-- Show the drink image -->
+            <h3>Barley</h3> <!-- Show the drink title -->
+            <p>Descriped as, light, smooth, nutty and toasty tasting. Made from steeping roasted barley grains. 0 mg of caffeine per 8 oz.</p> <!-- Show the drink description -->
+          
+          </div> 
+
+          <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-ginger.jpg" alt="Ginger Tea"> <!-- Show the drink image -->
+            <h3>Ginger</h3> <!-- Show the drink title -->
+            <p>Spicy, warming herbal fusion made with ginger root. Aids digestion, immune boosting and naturally relieves nausea. 0 mg of caffeine per 8 oz.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+          <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-chamomile.jpg" alt="Chamomile Tea"> <!-- Show the drink image -->
+            <h3>Chamomile</h3> <!-- Show the drink title -->
+            <p>Soothing herbal fusion made from the dried flowers of the chamomile plant. Known to reduce stress, calm the nervous system and promote restful sleep. 0 mg of caffeine per 8 oz.</p> <!-- Show the drink description -->
+            
+          </div> 
+        </div>
+
+            <h2>Milk Options</h2>
+
+      
+        <div class="card-container drink-grid"> <!-- Start the centered row of drink cards -->
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-cow.jpg" alt="Whole Milk"> <!-- Show the drink image -->
+            <h3>Whole Milk</h3> <!-- Show the drink title -->
+            <p>A rich, creamy milk that contains all its natural fat (about 3–3.5%), giving it a smooth texture and full flavor.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-cow.jpg" alt="2% Milk"> <!-- Show the drink image -->
+            <h3>2%</h3> <!-- Show the drink title -->
+            <p> A smooth, reduced-fat milk with about 2% milk fat, offering a lighter taste while still keeping a mild creaminess.</p> <!-- Show the drink description -->
+        
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-cow.jpg" alt="Skim Milk"> <!-- Show the drink image -->
+            <h3>Skim</h3> <!-- Show the drink title -->
+            <p>A light, fat-free milk with less than 0.5% fat, making it the least creamy but lowest in calories.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-oat.jpg" alt="Oat Milk"> <!-- Show the drink image -->
+            <h3>Oat</h3> <!-- Show the drink title -->
+            <p>A plant-based milk made from oats, known for its smooth, creamy texture and naturally mild, slightly sweet flavor.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-soy.jpg" alt="Soy Milk"> <!-- Show the drink image -->
+            <h3>Soy Milk</h3> <!-- Show the drink title -->
+            <p>A plant-based milk made from soybeans, with a smooth, creamy texture and a mild, slightly nutty flavor.</p> <!-- Show the drink description -->
+            
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-almond.jpg" alt="Almond Milk"> <!-- Show the drink image -->
+            <h3>Almond</h3> <!-- Show the drink title -->
+            <p>A plant-based milk made from almonds, with a light, creamy texture and a mild, slightly sweet nutty flavor.</p> <!-- Show the drink description -->
+        
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/p.jpg" alt="Protein Milk"> <!-- Show the drink image -->
+            <h3>Protein</h3> <!-- Show the drink title -->
+            <p>A milk with extra protein, usually made by enriching regular milk, giving it a creamier texture and a more filling, nutrient‑boosted profile.</p> <!-- Show the drink description -->
+          
+          </div>
+
+        </div>
+
+            <h2>Temperature</h2>
+
+      
+        <div class="card-container drink-grid"> <!-- Start the centered row of drink cards -->
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-steam.jpg" alt="Hot"> <!-- Show the drink image -->
+            <h3>Hot</h3> <!-- Show the drink title -->
+            <p>Our hot drinks are servedd at approx. 140 degrees fahrenheit.</p> <!-- Show the drink description -->
+      
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-ice.jpg" alt="Iced"> <!-- Show the drink image -->
+            <h3>Iced</h3> <!-- Show the drink title -->
+            <p>Have your drink with ice.</p> <!-- Show the drink description -->
+          
+          </div> <!-- End the first drink card -->
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-blend.jpg" alt="Blended"> <!-- Show the drink image -->
+            <h3>Blended</h3> <!-- Show the drink title -->
+            <p>Have your drink blended with ice.</p> <!-- Show the drink description -->
+            
+             </div>
+
+        </div>
+
+            <h2>Additions</h2>
+
+        
+        <div class="card-container drink-grid"> <!-- Start the centered row of drink cards -->
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-vanilla.jpg" alt="Vanilla"> <!-- Show the drink image -->
+            <h3>Vanilla</h3> <!-- Show the drink title -->
+          <p>A smooth, sweet flavor with warm, creamy notes that adds a comforting, classic taste to any drink.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-caramel.jpg" alt="Caramel"> <!-- Show the drink image -->
+            <h3>Caramel</h3> <!-- Show the drink title -->
+          <p>A rich, buttery-sweet flavor with deep toasted sugar notes that adds a smooth, dessert-like sweetness to drinks.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-hazelnut.jpg" alt="Hazelnut"> <!-- Show the drink image -->
+            <h3>Hazelnut</h3> <!-- Show the drink title -->
+            <p>A warm, nutty flavor with a subtle sweetness and toasted notes that adds smooth depth to drinks.</p> <!-- Show the drink description -->
+            
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-lavender.jpg" alt="Lavender"> <!-- Show the drink image -->
+            <h3>Lavender</h3> <!-- Show the drink title -->
+            <p>A light, floral flavor with gentle sweetness and soft herbal notes, adding a calming and aromatic touch to drinks.</p> <!-- Show the drink description -->
+          
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-rose.jpg" alt="Rose"> <!-- Show the drink image -->
+            <h3>Rose</h3> <!-- Show the drink title -->
+            <p>A delicate, floral flavor with light sweetness and a fragrant, slightly aromatic finish.</p><!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-honey.jpg" alt="Honey"> <!-- Show the drink image -->
+            <h3>Honey</h3> <!-- Show the drink title -->
+           <p>A naturally sweet flavor with soft floral notes and a smooth, rich finish that adds warmth and depth to drinks.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-cinnamon.jpg" alt="Cinnamon"> <!-- Show the drink image -->
+            <h3>Cinnamon</h3> <!-- Show the drink title -->
+            <p>A warm, sweet spice with a gentle kick of heat and woody notes, adding a cozy, slightly spicy depth to drinks.</p> <!-- Show the drink description -->
+            
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-ginger.jpg" alt="Ginger"> <!-- Show the drink image -->
+            <h3>Ginger</h3> <!-- Show the drink title -->
+            <p>A bold, spicy flavor with a warm kick and a hint of sweetness, adding a zesty, refreshing heat to drinks.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-peach.jpg" alt="Peach"> <!-- Show the drink image -->
+            <h3>Peach</h3> <!-- Show the drink title -->
+            <p>A juicy, sweet fruit flavor with light floral notes and a refreshing, slightly tangy finish.</p> <!-- Show the drink description -->
+    
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-mango.jpg" alt="Mango"> <!-- Show the drink image -->
+            <h3>Mango</h3> <!-- Show the drink title -->
+            <p>A sweet, juicy tropical flavor with rich, fruity notes and a hint of tangy brightness.</p> <!-- Show the drink description -->
+          
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-strawberry.jpg" alt="Strawberry"> <!-- Show the drink image -->
+            <h3>Strawberry</h3> <!-- Show the drink title -->
+            <p>A bright, sweet fruit flavor with juicy freshness and a slight tangy edge for a refreshing taste.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-mint.jpg" alt="Mint"> <!-- Show the drink image -->
+            <h3>Mint</h3> <!-- Show the drink title -->
+            <p>A cool, refreshing flavor with a light sweetness and a crisp, clean finish that adds a fresh, cooling sensation to drinks.</p> <!-- Show the drink description -->
+          
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-coconut.jpg" alt="Coconut"> <!-- Show the drink image -->
+            <h3>Coconut</h3> <!-- Show the drink title -->
+            <p>A smooth, tropical flavor with light sweetness, creamy richness, and subtle nutty notes that adds a mellow, beachy vibe to drinks.</p> <!-- Show the drink description -->
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-almond.jpg" alt="Almond"> <!-- Show the drink image -->
+            <h3>Almond</h3> <!-- Show the drink title -->
+            <p>A smooth, nutty flavor with a light sweetness and subtle creamy, marzipan-like notes that adds a rich, comforting touch to drinks</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-matcha.jpg" alt="Matcha"> <!-- Show the drink image -->
+            <h3>Matcha</h3> <!-- Show the drink title -->
+            <p>A bold green tea flavor with earthy, slightly grassy notes, balanced by subtle sweetness and a smooth, creamy finish.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-tea.jpg" alt="Chamomile Tea"> <!-- Show the drink image -->
+            <h3>Chai Spice</h3> <!-- Show the drink title -->
+            <p>A warm, aromatic blend of spices with sweet and slightly spicy notes, creating a cozy, rich flavor with hints of cinnamon, ginger, and cloves.</p> <!-- Show the drink description -->
+            <div class="price">$4.99</div> <!-- Show the visible price -->
+          </div> <!-- End the first drink card -->
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-butterfly.jpg" alt="Butterfly Pea Flower"> <!-- Show the drink image -->
+            <h3>Butterfly Pea Flower</h3> <!-- Show the drink title -->
+             <p>A light, delicate flavor with mild earthy and subtle floral notes, offering a smooth, refreshing taste that’s more gentle than traditional teas</p> <!-- Show the drink description -->
+          
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-tapioca.jpg" alt="Tapioca Pearls"> <!-- Show the drink image -->
+            <h3>Tapioca Pearls</h3> <!-- Show the drink title -->
+            <p>Classic chewy pearls with a soft, slightly sweet texture that adds the signature boba experience.</p> <!-- Show the drink description -->
+          
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-brownboba.jpg" alt="Brown Sugar Boba"> <!-- Show the drink image -->
+            <h3>Brown Sugar Boba</h3> <!-- Show the drink title -->
+            <p>Rich, caramel-like pearls coated in brown sugar for a deeper, dessert-style sweetness.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-mini.jpg" alt="Mini Boba"> <!-- Show the drink image -->
+            <h3>Mini Boba</h3> <!-- Show the drink title -->
+            <p>Smaller, softer pearls with a lighter chew for a more subtle texture in every sip.</p> <!-- Show the drink description -->
+        
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-popping.jpg" alt="Popping Boba"> <!-- Show the drink image -->
+            <h3>Popping Boba</h3> <!-- Show the drink title -->
+            <p>Juice-filled spheres that burst in your mouth with a splash of fruity flavor</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-crystal.jpg" alt="Crystal Boba"> <!-- Show the drink image -->
+            <h3>Crystal Boba</h3> <!-- Show the drink title -->
+            <p>Light, slightly sweet pearls with a firmer, jelly-like bite that keeps drinks feeling refreshing.</p> <!-- Show the drink description -->
+            
+          </div> <!-- End the first drink card -->
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-grass.jpg" alt="Grass Jelly"> <!-- Show the drink image -->
+            <h3>Grass Jelly</h3> <!-- Show the drink title -->
+            <p>Smooth herbal jelly with a mild, slightly bitter sweetness that balances richer drinks.</p> <!-- Show the drink description -->
+      
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-coconut1.jpg" alt="Coconut Jelly"> <!-- Show the drink image -->
+            <h3>Coconut Jelly(Nata de Coco)</h3> <!-- Show the drink title -->
+            <p>Translucent, chewy cubes with a light sweetness and refreshing bite.</p> <!-- Show the drink description -->
+            
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-lychee.jpg" alt="Lychee Jelly"> <!-- Show the drink image -->
+            <h3>Lychee Jelly</h3> <!-- Show the drink title -->
+            <p>Soft, sweet jelly with a lightly floral and fruity flavor.</p> <!-- Show the drink description -->
+            
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-rainbow.jpg" alt="Rainbow Jelly"> <!-- Show the drink image -->
+            <h3>Rainbow Jelly</h3> <!-- Show the drink title -->
+          <p>Colorful fruit-flavored jellies that add a fun mix of textures and tastes.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-aloe.jpg" alt="Aloe Vera"> <!-- Show the drink image -->
+            <h3>Aloe Vera</h3> <!-- Show the drink title -->
+            <p>Crisp, juicy cubes with a clean, lightly sweet taste for a refreshing texture.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-coffee.jpg" alt="Coffee Jelly"> <!-- Show the drink image -->
+            <h3>Coffee Jelly</h3> <!-- Show the drink title -->
+            <p>Soft jelly with a rich coffee flavor that adds a bold, slightly bitter-sweet twist.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-egg.jpg" alt="Egg Pudding"> <!-- Show the drink image -->
+            <h3>Egg Pudding</h3> <!-- Show the drink title -->
+            <p>Creamy, custard-like topping with a smooth texture and light sweetness.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-collagen.jpg" alt="Collagen"> <!-- Show the drink image -->
+            <h3>Collagen</h3> <!-- Show the drink title -->
+            <p>A smooth, protein-rich boost that supports skin, hair, and joint health.</p> <!-- Show the drink description -->
+            
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-turmeric.jpg" alt="Turmeric"> <!-- Show the drink image -->
+            <h3>Turmeric</h3> <!-- Show the drink title -->
+            <p>A warm, earthy add-in known for its anti-inflammatory and antioxidant properties.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-ginger.jpg" alt="Ginger Shot"> <!-- Show the drink image -->
+            <h3>Ginger Shot</h3> <!-- Show the drink title -->
+            <p>A bold, spicy boost that supports digestion and immune health</p> <!-- Show the drink description -->
+          
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-honey.jpg" alt="Honey Boost"> <!-- Show the drink image -->
+            <h3>Honey Boost</h3> <!-- Show the drink title -->
+            <p>Natural sweetness with antioxidants that can support overall wellness.</p> <!-- Show the drink description -->
+      
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre=lemon.jpg" alt="Lemon Boost"> <!-- Show the drink image -->
+            <h3>Lemon Boost</h3> <!-- Show the drink title -->
+            <p>Bright, citrusy addition rich in vitamin C for a refreshing health lift.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-matcha.jpg" alt="Matcha"> <!-- Show the drink image -->
+            <h3>Matcha Boost</h3> <!-- Show the drink title -->
+            <p>A green tea powder packed with antioxidants for calm energy and focus.</p> <!-- Show the drink description -->
+          
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-chia.jpg" alt="Chia Seeds"> <!-- Show the drink image -->
+            <h3>Chia Seeds</h3> <!-- Show the drink title -->
+            <p>Tiny seeds that add texture and provide fiber, omega‑3s, and nutrients.</p> <!-- Show the drink description -->
+          
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-flax.jpg" alt="Flax Seeds"> <!-- Show the drink image -->
+            <h3>Flax Seeds</h3> <!-- Show the drink title -->
+            <p>Nutty, mild-tasting seeds that add fiber and healthy fats.</p> <!-- Show the drink description -->
+            
+          </div>
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/p.jpg" alt="Protein Boost"> <!-- Show the drink image -->
+            <h3>Protein Boost</h3> <!-- Show the drink title -->
+          <p>A smooth add-in that increases protein for energy and fullness.</p> <!-- Show the drink description -->
+            
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-e.jpg" alt="Electrolyte Boost"> <!-- Show the drink image -->
+            <h3>Electrolyte Boost</h3> <!-- Show the drink title -->
+            <p>A light, refreshing add-in that helps support hydration.</p> <!-- Show the drink description -->
+          
+          </div> 
+
+             <div class="menu-card option-card drink-view-only"> <!-- Start the first drink card -->
+            <img src="assets/pre-c.jpg" alt="Vitamin C Boost"> <!-- Show the drink image -->
+            <h3>Vitamin C Boost</h3> <!-- Show the drink title -->
+            <p>A bright, immunity-supporting addition for a fresh citrus kick.</p> <!-- Show the drink description -->
+            
+          </div> 
+      
+</div> 
+
+      </div> 
+    </section> <!-- End the drinks section -->
+
+  </main> <!-- End the main content -->
+
+ <div id="popup" class="popup">
+  <div class="popup-content">
+
+    <h2>Choose an Order Type</h2>
+
+    <div id="order-choice">
+      <button type="button" onclick="showPickupForm()">Pickup</button>
+      <button type="button" onclick="showDeliveryForm()">Delivery</button>
+      <button type="button" onclick="closePopup()">Check Out The Menu</button>
+    </div>
+
+   <div id="pickup-form" style="display:none;">
+  <h3>Pickup Information</h3>
+
+  <input id="pickup-name" placeholder="Full Name"><br><br>
+  <input id="pickup-phone" placeholder="Phone Number"><br><br>
+
+  <div>
+    <button type="button" id="pickup-now-btn">Now</button>
+    <button type="button" id="pickup-later-btn">Later</button>
+  </div><br>
+
+  <input id="pickup-time" type="time" style="display:none;"><br><br>
+
+  <button onclick="savePickup()">Continue</button>
+</div>
+
+
+    <div id="delivery-form" style="display:none;">
+      <h3>Delivery Information</h3>
+
+      <input id="delivery-name" placeholder="Full Name"><br><br>
+
+      <input id="delivery-phone" placeholder="Phone Number"><br><br>
+
+      <input id="delivery-address" placeholder="Street Address"><br><br>
+
+      <input id="delivery-city" placeholder="City"><br><br>
+
+      <input id="delivery-state" placeholder="State"><br><br>
+
+      <input id="delivery-zip" placeholder="Zip Code"><br><br>
+
+      <textarea
+        id="delivery-notes"
+        placeholder="Delivery Instructions"></textarea><br><br>
+
+      <button onclick="saveDelivery()">Continue</button>
+    </div>
+
+  </div>
+</div>
+
+  <div id="item-modal" class="item-modal"> <!-- Start the hidden item modal -->
+    <div class="item-modal-content"> <!-- Start the white modal content box -->
+     
+      <div class="food-scroll-area">
+      <button class="close-item-modal" id="close-item-modal" type="button">&times;</button> <!-- Create the close button -->
+      <img id="modal-image" src="assets/placeholder.jpg" alt="Selected menu item"> <!-- Create the modal image element that JavaScript updates -->
+      <h3 id="modal-title">Menu Item</h3> <!-- Create the modal title that JavaScript updates -->
+      <p id="modal-description">Item description</p> <!-- Create the modal description that JavaScript updates -->
+      <p id="modal-price">$0.00</p> <!-- Create the modal price that JavaScript updates -->
+
+      <div class="quantity-row"> <!-- Start the quantity selector row -->
+        <button id="decrease-qty" class="qty-btn" type="button">-</button> <!-- Create the decrease quantity button -->
+        <span id="modal-quantity">1</span> <!-- Show the current quantity -->
+        <button id="increase-qty" class="qty-btn" type="button">+</button> <!-- Create the increase quantity button -->
+      </div> <!-- End the quantity selector row -->
+
+<!-- Side Selection -->
+<div class="side-select">
+  <label for="modal-side">Choose a Side</label>
+  <select id="modal-side">
+    <option value="">-- Select Side --</option>
+    <option value="Rosemary Parm Home Fries">Rosemary Parm Home Fries</option>
+    <option value="Thick Cut Coleslaw">Thick Cut Coleslaw</option>
+    <option value="Garlic Mashed Potatoes">Garlic Mashed Potatoes</option>
+    <option value="Corn Bread Slice">Corn Bread Slice</option>
+  </select>
+</div>
+
+<br>
+
+<!-- Salad Selection -->
+<div class="salad-select">
+  <label for="modal-salad">Choose a Side Salad</label>
+  <select id="modal-salad">
+    <option value="">-- Select Salad --</option>
+    <option value="House Side Salad">House Side Salad</option>
+    <option value="Grilled Ceasar Side Salad">Grilled Ceasar Side Salad</option>
+    <option value="Thai Side Salad">Thai Side Salad</option>
+  </select>
+</div>
+
+<br>
+</div>
+      <button id="add-to-cart-btn" type="button">Add to Cart</button> <!-- Create the Add to Cart button -->
+    </div> <!-- End the modal content box -->
+  </div> <!-- End the hidden item modal -->
+
+  <div id="tea-builder-modal" class="item-modal">
+  <div class="item-modal-content tea-builder-box">
+
+    <!-- Close button -->
+    <button class="close-item-modal" id="close-tea-builder" type="button">&times;</button>
+
+    <h2 id="tea-builder-title">Build Your Drink</h2>
+
+    <div class="tea-scroll-area">
+
+      <label>Base Tea</label>
+      <select id="tea-base">
+        <option>Black Tea</option>
+        <option>Green Tea</option>
+        <option>Jasmine Tea</option>
+        <option>Mullein</option>
+        <option>Rose</option>
+        <option>Mint</option>
+        <option>Barley</option>
+        <option>Ginger</option>
+        <option>Chamomile</option>
+      </select>
+
+      <br><br>
+
+      <div id="milk-row">
+        <label>Milk Option</label>
+        <select id="tea-milk">
+          <option>Whole Milk</option>
+          <option>2%</option>
+          <option>Skim</option>
+          <option>Oat</option>
+          <option>Soy</option>
+          <option>Almond</option>
+          <option>Protein</option>
+        </select>
+      </div>
+
+      <br>
+
+      <label>Temperature</label>
+      <select id="tea-temp">
+        <option>Hot</option>
+        <option>Iced</option>
+        <option>Blended</option>
+      </select>
+
+      <br><br>
+
+      <label>Additions (choose any)</label>
+
+      <div id="tea-additions">
+        <label><input type="checkbox" value="Vanilla"> Vanilla</label><br>
+        <label><input type="checkbox" value="Caramel"> Caramel</label><br>
+        <label><input type="checkbox" value="Hazelnut"> Hazelnut</label><br>
+        <label><input type="checkbox" value="Lavender"> Lavender</label><br>
+        <label><input type="checkbox" value="Honey"> Honey</label><br>
+        <label><input type="checkbox" value="Peach"> Peach</label><br>
+        <label><input type="checkbox" value="Mango"> Mango</label><br>
+        <label><input type="checkbox" value="Brown Sugar Boba"> Brown Sugar Boba</label><br>
+        <label><input type="checkbox" value="Tapioca Pearls"> Tapioca Pearls</label><br>
+        <label><input type="checkbox" value="Popping Boba"> Popping Boba</label><br>
+        <label><input type="checkbox" value="Grass Jelly"> Grass Jelly</label><br>
+        <label><input type="checkbox" value="Lychee Jelly"> Lychee Jelly</label><br>
+        <label><input type="checkbox" value="Rose"> Rose</label><br>
+        <label><input type="checkbox" value="Cinnamon"> Cinnamon</label><br>
+        <label><input type="checkbox" value="Ginger"> Ginger</label><br>
+        <label><input type="checkbox" value="Strawberry"> Strawberry</label><br>
+        <label><input type="checkbox" value="Mint"> Mint</label><br>
+        <label><input type="checkbox" value="Coconut"> Coconut</label><br>
+        <label><input type="checkbox" value="Almond"> Almond</label><br>
+        <label><input type="checkbox" value="Matcha"> Matcha</label><br>
+        <label><input type="checkbox" value="Chai Spice"> Chai Spice</label><br>
+        <label><input type="checkbox" value="Butterfly Pea Flower"> Butterfly Pea Flower</label><br>
+        <label><input type="checkbox" value="Mini Boba"> Mini Boba</label><br>
+        <label><input type="checkbox" value="Crystal Boba"> Crystal Boba</label><br>
+        <label><input type="checkbox" value="Coconut Jelly"> Coconut Jelly</label><br>
+        <label><input type="checkbox" value="Rainbow Jelly"> Rainbow Jelly</label><br>
+        <label><input type="checkbox" value="Coffee Jelly"> Coffee Jelly</label><br>
+        <label><input type="checkbox" value="Aloe Vera"> Aloe Vera</label><br>
+        <label><input type="checkbox" value="Egg Pudding"> Egg Pudding</label><br>
+        <label><input type="checkbox" value="Collagen"> Collagen</label><br>
+        <label><input type="checkbox" value="Turmeric"> Turmeric</label><br>
+        <label><input type="checkbox" value="Ginger Shot"> Ginger Shot</label><br>
+        <label><input type="checkbox" value="Honey Boost"> Honey Boost</label><br>
+        <label><input type="checkbox" value="Lemon Boost"> Lemon Boost</label><br>
+        <label><input type="checkbox" value="Matcha Boost"> Matcha Boost</label><br>
+        <label><input type="checkbox" value="Chia Seeds"> Chia Seeds</label><br>
+      <label><input type="checkbox" value="Flax Seeds"> Flax Seeds</label><br>
+      <label><input type="checkbox" value="Protein Boost"> Protein Boost</label><br>
+      <label><input type="checkbox" value="Electrolyte Boost"> Electrolyte Boost</label><br>
+      <label><input type="checkbox" value="Vitamin C"> Vitamin C</label><br>
+      </div>
+
+      <br><br>
+
+      <p id="tea-live-price" class="tea-price-display">
+        Total: $4.99
+      </p>
+
+    </div>
+
+    <!-- Add button stays visible -->
+    <button id="tea-builder-add-btn">Add Drink To Cart</button>
+
+  </div>
+</div>
+
+<div id="drink-view-modal" class="item-modal">
+  <div class="item-modal-content">
+    <button class="close-item-modal" id="close-drink-view">&times;</button>
+
+    <img id="drink-view-image" src="" alt="">
+    <h2 id="drink-view-title"></h2>
+    <p id="drink-view-description"></p>
+
+  </div>
+</div>
+
+
+  <div id="receipt-modal" class="item-modal">
+  <div class="item-modal-content receipt-box">
+    <button class="close-item-modal" id="close-receipt-modal" type="button">&times;</button>
+
+    <h2>Order Confirmation</h2>
+
+    <div id="receipt-details"></div>
+
+    <button id="receipt-ok-btn">OK</button>
+  </div>
+</div>
+
+
+  <script src="menu.js"></script> <!-- Load the menu JavaScript -->
+</body> <!-- End the body -->
+</html> <!-- End the HTML document -->
