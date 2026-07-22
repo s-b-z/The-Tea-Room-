@@ -1,3 +1,5 @@
+https://s-b-z.github.io/The-Tea-Room-/
+
 The Tea Room — Interactive Ordering System
 A fully interactive restaurant ordering interface built with HTML, CSS, and vanilla JavaScript.
 This project includes a complete menu system, dynamic modals, a custom drink builder, and a full checkout flow with receipt generation.
